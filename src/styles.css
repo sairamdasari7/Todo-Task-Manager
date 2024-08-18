@@ -1,0 +1,177 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Light gray background */
+    color: #333;
+  }
+  
+  .app {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff; /* White background for the app container */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a90e2; /* Blue color for the heading */
+  }
+  
+  .task-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background: #fafafa; /* Light background for the form */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .label-container {
+    margin-bottom: 10px;
+  }
+  
+  .label-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .label-checkbox input {
+    margin-right: 8px;
+  }
+  
+  .task-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #4a90e2; /* Blue background for the button */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .task-form button:hover {
+    background: #357ABD; /* Darker blue on hover */
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #fafafa; /* Light background for the search bar */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-bar input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .search-bar select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .search-bar button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #4a90e2; /* Blue background for the button */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background: #357ABD; /* Darker blue on hover */
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background: #ffffff; /* White background for each task item */
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .task-item span {
+    flex: 1;
+  }
+  
+  .task-item button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #ff4b5c; /* Red background for delete button */
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .task-item button:hover {
+    background: #e03e4f; /* Darker red on hover */
+  }
+  
+  @media (max-width: 600px) {
+    .app {
+      padding: 10px;
+    }
+  
+    .task-form input[type="text"],
+    .search-bar input[type="text"],
+    .search-bar select {
+      font-size: 14px;
+    }
+  
+    .task-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media (min-width: 600px) and (max-width: 992px) {
+    .app {
+      padding: 15px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .app {
+      padding: 20px;
+    }
+  }
+  

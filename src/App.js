@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import SearchBar from './components/SearchBar';
+import { saveToLocalStorage, getFromLocalStorage } from './utils/localStorage';
+import './styles.css';
 
-function App() {
+const App = () => {
+  const [tasks, setTasks] = useState(getFromLocalStorage('tasks'));
+  const [labels, setLabels] = useState(getFromLocalStorage('labels'));
+  const [filteredTasks, setFilteredTasks] = useState(tasks);
+
+  useEffect(() => {
+    saveToLocalStorage('tasks', tasks);
+    saveToLocalStorage('labels', labels);
+  }, [tasks, labels]);
+
+  const addTask = (task) => {
+    setTasks([...tasks, { ...task, id: Date.now() }]);
+  };
+
+  const addLabel = (label) => {
+    if (!labels.includes(label)) {
+      setLabels([...labels, label]);
+    }
+  };
+
+  const handleEditTask = (task) => {
+    const updatedTask = prompt('Edit task description:', task.description);
+    if (updatedTask) {
+      setTasks(tasks.map(t => t.id === task.id ? { ...t, description: updatedTask } : t));
+    }
+  };
+
+  const handleDeleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
+
+  const handleSearch = ({ searchTerm, selectedLabel }) => {
+    const filtered = tasks.filter(task => {
+      const matchesSearchTerm = task.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesLabel = selectedLabel ? task.labels.includes(selectedLabel) : true;
+      return matchesSearchTerm && matchesLabel;
+    });
+    setFilteredTasks(filtered);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>To-Do List</h1>
+      <TaskForm addTask={addTask} labels={labels} />
+      <SearchBar labels={labels} onSearch={handleSearch} />
+      <TaskList tasks={filteredTasks} onEdit={handleEditTask} onDelete={handleDeleteTask} />
     </div>
   );
-}
+};
 
 export default App;
