@@ -7,12 +7,12 @@ import './styles.css';
 
 const App = () => {
   const [tasks, setTasks] = useState(getFromLocalStorage('tasks'));
-  const [labels, setLabels] = useState(getFromLocalStorage('labels'));
+  const [labels, setLabels] = useState(getFromLocalStorage('labels')); // Ensure this is used
   const [filteredTasks, setFilteredTasks] = useState(tasks);
 
   useEffect(() => {
     saveToLocalStorage('tasks', tasks);
-    saveToLocalStorage('labels', labels);
+    saveToLocalStorage('labels', labels); // Example of usage
   }, [tasks, labels]);
 
   const addTask = (task) => {
@@ -39,10 +39,14 @@ const App = () => {
     setFilteredTasks(filtered);
   };
 
+  const handleAddLabel = (label) => {
+    setLabels([...labels, label]);
+  };
+
   return (
     <div className="app">
       <h1>To-Do List</h1>
-      <TaskForm addTask={addTask} labels={labels} />
+      <TaskForm addTask={addTask} labels={labels} onAddLabel={handleAddLabel} />
       <SearchBar labels={labels} onSearch={handleSearch} />
       <TaskList tasks={filteredTasks} onEdit={handleEditTask} onDelete={handleDeleteTask} />
     </div>
