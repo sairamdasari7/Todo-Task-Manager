@@ -19,12 +19,6 @@ const App = () => {
     setTasks([...tasks, { ...task, id: Date.now() }]);
   };
 
-  const addLabel = (label) => {
-    if (!labels.includes(label)) {
-      setLabels([...labels, label]);
-    }
-  };
-
   const handleEditTask = (task) => {
     const updatedTask = prompt('Edit task description:', task.description);
     if (updatedTask) {
